@@ -20,11 +20,12 @@ function CardUpload({ category }) {
 
     const formData = new FormData();
     formData.append('image', imageSelected);
+    const url = import.meta.env.VITE_API_URL;
 
     try {
       setUploading(true); // Start loading
 
-      const response = await axios.post('http://localhost:5000/upload', formData, {
+      const response = await axios.post(`${url}/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
