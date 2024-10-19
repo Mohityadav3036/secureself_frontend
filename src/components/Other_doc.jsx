@@ -25,10 +25,11 @@ function Other_doc() {
     formData.append('image', imageSelected);
 
     console.log("image",imageSelected);
+    const apiUrl = import.meta.env.VITE_API_URL;
     try {
       setUploading(true); // Start loading
       const storedToken = localStorage.getItem("token");
-      const response = await axios.post('http://localhost:5100/api/document/upload-image', formData, {
+      const response = await axios.post(`${apiUrl}/api/document/upload-image`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${storedToken}`,

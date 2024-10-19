@@ -1,10 +1,14 @@
-import { createContext, useEffect, useState } from "react";
-import axios from "axios";
+  import { createContext, useEffect, useState } from "react";
+  import axios from "axios";
 
-export const StoreContext = createContext();
+  export const StoreContext = createContext();
 
-const StoreContextProvider = (props) => {
-  const url = "http://localhost:5100/api";
+  const StoreContextProvider = (props) => {
+    const apiUrl = import.meta.env.VITE_API_URL;
+    // console.log("mohit->",apiUrl)
+    // const apiUrl = 'http://localhost:5100'
+    console.log("mohit->",apiUrl)
+  const url = `${apiUrl}/api`;
   const [token, setToken] = useState("");
   const [isLogin, setIsLogin] = useState(false);
   const [userDetails, setUserDetails] = useState({});
