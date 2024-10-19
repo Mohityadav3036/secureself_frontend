@@ -14,7 +14,7 @@ function Uploadcard() {
   const [isSubmitting, setIsSubmitting] = useState(false); // For tracking submit state
   const navigate = useNavigate(); // Initialize useNavigate
   const { category } = useParams(); // Get category from the URL parameters
-  
+  const apiUrl = import.meta.env.VITE_API_URL;
   const uploadImage = async () => {
     if (!imageSelected) {
       alert('Please select an image to upload');
@@ -23,7 +23,7 @@ function Uploadcard() {
 
     const formData = new FormData();
     formData.append('image', imageSelected);
-    const apiUrl = import.meta.env.VITE_API_URL;
+   
 
     try {
       setUploading(true); // Start loading
@@ -52,13 +52,13 @@ function Uploadcard() {
 
     if (!description) {
       setDescription(category);
-    }
+    } 
 
     const cardData = { category, description, imageUrl };
 
     try {
       setIsSubmitting(true); // Start submitting
-      const res = await axios.post('http://localhost:5100/api/document/add-document', cardData, {
+      const res = await axios.post(`${apiUrl}/add-document`, cardData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
