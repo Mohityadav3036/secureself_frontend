@@ -172,7 +172,7 @@
 //   );
 // }
 
-// export default Header;
+// export default Header
 
 import React, { useContext, useEffect, useState } from "react";
 import logo from "../../img/Secure-Self_2-removebg-preview.png";
