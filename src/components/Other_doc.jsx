@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'; // Import useNavigate
 import bgimage from '../img/bg.webp';
 
 function Other_doc() {
+  const apiUrl = import.meta.env.VITE_API_URL;
   const [imageSelected, setImageSelected] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
   const [description, setDescription] = useState('');
@@ -25,7 +26,7 @@ function Other_doc() {
     formData.append('image', imageSelected);
 
     console.log("image",imageSelected);
-    const apiUrl = import.meta.env.VITE_API_URL;
+   
     try {
       setUploading(true); // Start loading
       const storedToken = localStorage.getItem("token");
@@ -59,7 +60,7 @@ function Other_doc() {
 
     try {
       setIsSubmitting(true); // Start submitting
-      const res = await axios.post('http://localhost:5100/api/document/add-document', cardData, {
+      const res = await axios.post(`${apiUrl}/api/document/add-document`, cardData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },

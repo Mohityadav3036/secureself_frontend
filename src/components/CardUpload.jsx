@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import bgimage from '../img/bg.webp'
 function CardUpload({ category }) {
+  const url = import.meta.env.VITE_API_URL;
   const [imageSelected, setImageSelected] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
   const [description, setDescription] = useState('');
@@ -20,7 +21,7 @@ function CardUpload({ category }) {
 
     const formData = new FormData();
     formData.append('image', imageSelected);
-    const url = import.meta.env.VITE_API_URL;
+   
 
     try {
       setUploading(true); // Start loading
@@ -55,7 +56,7 @@ function CardUpload({ category }) {
 
     try {
       setIsSubmitting(true); // Start submitting
-      const res = await axios.post('http://localhost:5000/create', cardData);
+      const res = await axios.post(`${url}/create`, cardData);
       console.log('Card created:', res.data);
 
       // Show success notification
